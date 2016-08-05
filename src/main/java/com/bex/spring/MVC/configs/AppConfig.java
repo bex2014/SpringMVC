@@ -25,7 +25,8 @@ public class AppConfig implements WebApplicationInitializer {
 	@Override
 	public void onStartup(ServletContext container) throws ServletException {
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(AppConfig.class, JPAConfig.class, DispatcherServletConfiguration.class);
+        rootContext.register(AppConfig.class, JPAConfig.class, DispatcherServletConfiguration.class,ResourceServerConfiguration.class,
+        		AuthorizationServerConfiguration.class,OAuth2SecurityConfiguration.class,MethodSecurityConfig.class);
         container.addListener(new ContextLoaderListener(rootContext));
         
         ServletRegistration.Dynamic dispatcher = container.addServlet("dispatcher", new DispatcherServlet(rootContext));
