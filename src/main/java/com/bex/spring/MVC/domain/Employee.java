@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.concurrent.LinkedBlockingDeque;
 
 @XmlRootElement(name = "Employee")
 @Entity(name="employee")
@@ -19,6 +20,8 @@ public class Employee {
 	private String email;
 
 	public Employee() {
+		LinkedBlockingDeque<String> deque = new LinkedBlockingDeque(10);
+		deque.add("test");
 	}
 	
 	public String getName() {

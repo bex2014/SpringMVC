@@ -1,37 +1,39 @@
 package com.bex.spring.MVC.configs;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+import javax.servlet.Filter;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-@Configuration
-@ComponentScan(basePackages = "com.bex.spring.MVC")
-public class AppConfig implements WebApplicationInitializer {
-	
+public class AppConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
+
 	public static void main(String[] args) {
-/*		ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class, JPAConfig.class);
-		for (String bean : ctx.getBeanDefinitionNames()) {
-			System.out.println("bean = " + bean);
-		}*/
+		/*
+		 * ApplicationContext ctx = new
+		 * AnnotationConfigApplicationContext(AppConfig.class, JPAConfig.class);
+		 * for (String bean : ctx.getBeanDefinitionNames()) {
+		 * System.out.println("bean = " + bean); }
+		 */
 	}
 
 	@Override
-	public void onStartup(ServletContext container) throws ServletException {
-		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(AppConfig.class, JPAConfig.class, DispatcherServletConfiguration.class,ResourceServerConfiguration.class,
-        		AuthorizationServerConfiguration.class,OAuth2SecurityConfiguration.class,MethodSecurityConfig.class);
-        container.addListener(new ContextLoaderListener(rootContext));
-        
-        ServletRegistration.Dynamic dispatcher = container.addServlet("dispatcher", new DispatcherServlet(rootContext));
-        dispatcher.setAsyncSupported(true);
-        dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");		
+	protected Class<?>[] getRootConfigClasses() {
+		return new Class[] { DispatcherServletConfiguration.class };
 	}
+
+	@Override
+	protected Class<?>[] getServletConfigClasses() {
+		return null;
+	}
+
+	@Override
+	protected String[] getServletMappings() {
+		return new String[] { "/" };
+	}
+
+	@Override
+	protected Filter[] getServletFilters() {
+		Filter[] singleton = { new CORSFilter() };
+		return singleton;
+	}
+
 }

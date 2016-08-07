@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecur
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true, jsr250Enabled = true, mode = AdviceMode.PROXY)
 public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
+	@SuppressWarnings("unused")
 	@Autowired
 	private OAuth2SecurityConfiguration securityConfig;
 
