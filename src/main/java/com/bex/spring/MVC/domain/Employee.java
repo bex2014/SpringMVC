@@ -5,47 +5,44 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.concurrent.LinkedBlockingDeque;
 
 @XmlRootElement(name = "Employee")
-@Entity(name="employee")
+@Entity(name = "employee")
 public class Employee {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
-	
-	private String name;
-	
-	private String email;
 
-	public Employee() {
-		LinkedBlockingDeque<String> deque = new LinkedBlockingDeque(10);
-		deque.add("test");
-	}
-	
-	public String getName() {
-		return name;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-	
-	public void setName(String name) {
-		this.name = name;
-	}
+    private String name;
 
-	public String getEmail() {
-		return email;
-	}
+    private String email;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public Employee() {
 
-	public Integer getId() {
-		return id;
-	}
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

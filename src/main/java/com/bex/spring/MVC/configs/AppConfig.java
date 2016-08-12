@@ -1,8 +1,11 @@
 package com.bex.spring.MVC.configs;
 
 import javax.servlet.Filter;
+import javax.servlet.ServletRegistration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import java.util.Collection;
 
 public class AppConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -34,6 +37,13 @@ public class AppConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 	protected Filter[] getServletFilters() {
 		Filter[] singleton = { new CORSFilter() };
 		return singleton;
+	}
+
+	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+		System.out.println(">>>>>>>>>>> customizeRegistration <<<<<<<<<<<<<<<<<");
+		for (String c : registration.getMappings()) {
+			System.out.println("mapping = " + c);
+		}
 	}
 
 }
