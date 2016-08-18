@@ -1,4 +1,4 @@
-package com.bex.spring.MVC.dop;
+package com.bex.spring.MVC.configs.dop;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

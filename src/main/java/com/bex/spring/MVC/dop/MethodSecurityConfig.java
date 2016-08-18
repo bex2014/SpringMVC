@@ -1,5 +1,6 @@
-package com.bex.spring.MVC.configs;
+package com.bex.spring.MVC.configs.dop;
 
+import com.bex.spring.MVC.configs.dop.OAuth2SecurityConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecur
 @EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true, jsr250Enabled = true, mode = AdviceMode.PROXY)
 public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
 	@SuppressWarnings("unused")
+
 	@Autowired
 	private OAuth2SecurityConfiguration securityConfig;
 
